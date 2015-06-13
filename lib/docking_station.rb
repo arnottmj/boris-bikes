@@ -20,5 +20,4 @@ class DockingStation
     bikes.reject { |bike| bike.broken? }
   end
 
-
 end
