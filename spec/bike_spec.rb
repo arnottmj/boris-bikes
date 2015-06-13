@@ -11,6 +11,5 @@ describe Bike do
     bike.report_broken
     expect(bike).not_to be_working
   end
-
   
 end

@@ -5,7 +5,7 @@ describe DockingStation do
 
   it_behaves_like BikeContainer
 
-  it 'will raise an error when empty' do
+  it 'releasing a bike will raise an error when empty' do
     expect{subject.release_bike}.to raise_error 'No bikes available'
 
   end
@@ -16,17 +16,31 @@ describe DockingStation do
 
   end
 
-  it 'will only release working bikes' do
+  it 'will release a working bike' do
 
-    broken_bike = Bike.new
-    broken_bike.report_broken
-    working_bike = Bike.new
-    working_bike.report_broken
-    subject.dock(working_bike)
-    subject.dock(broken_bike)
+    bike = double :bike, broken?: false
+    subject.dock (bike)
+    expect(subject.release_bike).to eq bike
 
-    expect{subject.release_bike}.to raise_error 'No bikes available'
+  end
 
+  it 'will not release a broken bike' do
+
+    bike = double :bike, broken?: true
+    subject.dock (bike)
+    expect{subject.release_bike}.to raise_error "No bikes available"
+
+  end
+
+  it 'will release a broken bike for fixing' do
+    bike = double :bike, working?: false
+    subject.dock (bike)
+    expect(subject.release_broken_bike_for_fixing).to eq bike
+
+  end
+
+  it 'will not release a broken bike for fixing when empty' do
+    expect{subject.release_broken_bike_for_fixing}.to raise_error "No bikes available"
 
   end
 

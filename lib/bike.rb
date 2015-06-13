@@ -19,6 +19,11 @@ class Bike
     !@is_working
   end
 
+  def fix
+    @is_working = true
+
+  end
+
 end
 
 

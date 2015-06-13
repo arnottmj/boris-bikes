@@ -7,9 +7,13 @@ class Van
 
   def load bike
 
-    fail 'The bike is not broken' if bike.working?
-    fail 'The van is full' if full?
-    bikes << bike
+    add_bike bike
+
+  end
+
+  def unload 
+
+    remove_bike
 
   end
 

@@ -14,13 +14,16 @@ describe Van do
   it 'will not load bikes when full' do
     bike.report_broken
     expect(subject).to receive(:full?) {true}
-    expect{subject.load(bike)}.to raise_error 'The van is full'
+    expect{subject.load(bike)}.to raise_error 'Van full'
 
   end
 
-  it 'will not load working bikes' do
-    expect{subject.load(bike)}.to raise_error 'The bike is not broken'
+  it 'will respond to unload' do
+    expect(subject).to respond_to :unload
+
   end
+
+  
 
 
 
