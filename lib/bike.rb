@@ -10,12 +10,13 @@ class Bike
   end
 
   def working?
+
     @is_working
 
   end
-  
+
+  def broken?
+    !@is_working
+  end
+
 end
-
-
-
-
